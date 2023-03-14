@@ -1,0 +1,211 @@
+﻿@model  IEnumerable<Vidly_Project_iRely.Models.RentaiViewModel>
+
+    <div class="row">
+
+        <div class="col-sm-4">
+
+            @using (Html.BeginForm("Save", "rent", FormMethod.Post, new { id = "popupForm" }))
+            {
+                <div>
+                    <h1 class="py-5">Movie Rent</h1>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="form-label">Movie Number </label>
+                    <select class="form-control" id="movieid" name="movieid" placeholder="Movie iD" required>
+                        <option>Please Select</option>
+                    </select>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="form-label">Customer ID</label>
+                    <input type="text" id="customerid" name="customerid" class="form-control" placeholder="Customer ID" required />
+                </div>
+
+
+                <div class="form-group">
+                    <label class="form-label">Payment Fee</label>
+                    <input type="text" id="fee" name="fee" class="form-control" placeholder="Payment Fee" required />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Start Date</label>
+                    <input type="date" id="startdate" name="startdate" class="form-control" placeholder="Start Date" required />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">End Date</label>
+                    <input type="date" id="enddate" name="enddate" class="form-control" placeholder="End Date" required />
+                </div>
+
+                <div class="form-group py-3">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            }
+
+
+        </div>
+
+        <div class="col-sm-8 py-5">
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Movie Number Ref</th>
+                        <th>Customer ID</th>
+                       
+                        <th>Fee</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Available</th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+            <tr>
+                <td>
+                    @item.movieid
+                </td>
+                <td>
+                    @item.customerid
+                </td>
+               
+                <td>
+                    @item.fee
+                </td>
+                <td>
+                    @item.startdate
+                </td>
+                <td>
+                    @item.enddate
+                </td>
+                <td>
+                    @item.available
+                </td>
+            </tr>
+                }
+
+            </table>
+
+
+        </div>
+    
+    </div>
+
+@section scripts
+
+{
+
+    <script src="~/Scripts/jquery-3.6.3.js"></script>
+    <script src="~/Scripts/jquery-3.6.3.min.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+
+    <script>
+        getMovie();
+        load();
+
+        function load() {
+            $("#customerid").attr("disabled", "disabled");
+            $("#customername").attr("disabled", "disabled");
+            $("#fee").attr("disabled", "disabled");
+            $("#startdate").attr("disabled", "disabled");
+            $("#enddate").attr("disabled", "disabled");
+        }
+
+
+        function getMovie() {
+            $.ajax({
+
+                type: 'GET',
+                url: '/rent/Getmovie',
+                dataType: 'JSON',
+                success: function (data) {
+                    console.log(data);
+
+                    for (var i = 0; i < data.length; i++) {
+
+                        $("#movieid").append($("<option/>", {
+                            text: data[i].movieno
+
+                        }));
+                    }
+
+                }
+
+
+
+
+            });
+        }
+
+        $("#movieid").change(function () {
+            available();
+
+        });
+
+        function available()
+        {
+            $.ajax({
+
+                type: 'POST',
+                url: '/rent/Getavail?movieno=' + $("#movieid").val(),
+                dataType: 'JSON',   
+                success: function (data) {
+                    console.log(data)
+
+                    var aval = data;
+
+                    if (aval.toLowerCase() === "yes")
+                    {
+                        $("#customerid").removeAttr("disabled", "disabled");
+                        $("#customername").removeAttr("disabled", "disabled");
+                        $("#fee").removeAttr("disabled", "disabled");
+                        $("#startdate").removeAttr("disabled", "disabled");
+                        $("#enddate").removeAttr("disabled", "disabled");
+                    }
+
+                    else
+                    {
+                            $("#customerid").attr("disabled", "disabled");
+                            $("#customername").attr("disabled", "disabled");
+                            $("#fee").attr("disabled", "disabled");
+                            $("#startdate").attr("disabled", "disabled");
+                            $("#enddate").attr("disabled", "disabled");
+
+                    }
+                }
+
+
+            });
+
+        }
+
+        getCustomerID();
+        function getCustomerID() {
+            $("#customerid").keyup(function (e) {
+
+                $.ajax({
+
+                    type: 'POST',
+                    url: '/rent/Getid?id=' + $("#customerid").val(),
+
+                    dataType: 'JSON',
+                    success: function (data) {
+
+                        $("#customername").val(data)
+
+                    }
+
+
+
+                });
+
+            });
+        }
+
+    </script>
+
+
+}

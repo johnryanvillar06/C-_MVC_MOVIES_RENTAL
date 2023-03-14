@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Vidly_Project_iRely.Models.movieReg>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="py-5">Movie List</h2> @*INDEX*@
+
+<p>
+    
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.movieno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.movietitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.genre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.available)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.movieno)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.movietitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.genre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.available)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.id }, new { @class = "btn btn-secondary" }) |
+            @Html.ActionLink("Details", "Details", new { id = item.id }, new { @class = "btn btn-info text-white" }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.id }, new { @class = "btn btn-danger" })
+
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,73 @@
+﻿@model Vidly_Project_iRely.Models.movieReg
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2 class="py-5">Create</h2>
+<link href="~/Content/myStyle.css" rel="stylesheet" />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+
+<div class="form-horizontal">
+    <h2>Movie Register</h2>
+
+    <form> @*CHOOSE FILE INPUT*@
+        <div class="form-group">
+            <label for="exampleFormControlFile1"> <strong>Select Image</strong>  </label>
+            <input type="file" style="display:flex;" class="form-control-file py-2" id="exampleFormControlFile1">
+        </div>
+    </form>
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.movieno, htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.movieno, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.movieno, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.movietitle, htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.movietitle, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.movietitle, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.genre, htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.genre, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.genre, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.available, htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.available, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.available, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group py-3">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

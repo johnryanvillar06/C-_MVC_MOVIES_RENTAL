@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Vidly_Project_iRely.Models.customer>
+
+@{
+    ViewBag.Title = "Index";
+}
+    <link href="~/Content/myStyle.css" rel="stylesheet" />
+<h2 class="py-5">Customer </h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.customername)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mobile)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.id)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.customername)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.address)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.mobile)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.id }, new { @class = "btn btn-secondary" }) |
+        @Html.ActionLink("Details", "Details", new { id = item.id }, new { @class = "btn btn-info text-white" }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.id }, new { @class = "btn btn-danger" })
+    </td>
+</tr>
+}
+
+</table>

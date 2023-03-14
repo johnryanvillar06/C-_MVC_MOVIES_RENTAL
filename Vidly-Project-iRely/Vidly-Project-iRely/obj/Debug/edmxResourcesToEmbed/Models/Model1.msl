@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MoviesRentalDbModelStoreContainer" CdmEntityContainer="MoviesRentalDbEntities">
+    <EntitySetMapping Name="customers">
+      <EntityTypeMapping TypeName="MoviesRentalDbModel.customer">
+        <MappingFragment StoreEntitySet="customer">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="customername" ColumnName="customername" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="movieRegs">
+      <EntityTypeMapping TypeName="MoviesRentalDbModel.movieReg">
+        <MappingFragment StoreEntitySet="movieRegs">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="movieno" ColumnName="movieno" />
+          <ScalarProperty Name="movietitle" ColumnName="movietitle" />
+          <ScalarProperty Name="genre" ColumnName="genre" />
+          <ScalarProperty Name="available" ColumnName="available" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="rents">
+      <EntityTypeMapping TypeName="MoviesRentalDbModel.rent">
+        <MappingFragment StoreEntitySet="rent">
+          <ScalarProperty Name="enddate" ColumnName="enddate" />
+          <ScalarProperty Name="startdate" ColumnName="startdate" />
+          <ScalarProperty Name="fee" ColumnName="fee" />
+          <ScalarProperty Name="customerid" ColumnName="customerid" />
+          <ScalarProperty Name="movieid" ColumnName="movieid" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="returnmovies">
+      <EntityTypeMapping TypeName="MoviesRentalDbModel.returnmovie">
+        <MappingFragment StoreEntitySet="returnmovie">
+          <ScalarProperty Name="fine" ColumnName="fine" />
+          <ScalarProperty Name="elsp" ColumnName="elsp" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="custid" ColumnName="custid" />
+          <ScalarProperty Name="movieno" ColumnName="movieno" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

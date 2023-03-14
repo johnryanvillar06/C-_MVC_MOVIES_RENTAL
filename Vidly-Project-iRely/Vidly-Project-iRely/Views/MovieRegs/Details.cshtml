@@ -1,0 +1,50 @@
+﻿@model Vidly_Project_iRely.Models.movieReg
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 class="py-5">Details</h2>
+
+<div>
+    <h4>movieReg</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.movieno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.movieno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.movietitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.movietitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.genre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.genre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.available)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.available)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
